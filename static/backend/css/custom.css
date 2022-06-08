@@ -1,0 +1,25 @@
+.card-body{
+   background-color: goldenrod;
+   margin-bottom: 100%;
+}
+.phone{
+   background-color: rosybrown;
+}
+.pen{
+   background-color: purple;
+}
+.wat{
+   background-color: burlywood;
+   
+}
+.cheese{
+   background-color: beige;
+}
+.book{
+   color: black;
+}
+.bg-dark{
+   background-color: darkcyan;
+   margin-left: 35%;
+   margin-top: 10%;
+}

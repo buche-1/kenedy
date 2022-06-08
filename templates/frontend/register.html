@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+</head>
+<link rel="stylesheet" href="{% static 'frontend/plugins/bootstrap/bootstrap.min.css' %}">
+<!-- slick slider -->
+<link rel="stylesheet" href="{% static 'frontend/plugins/slick/slick.css' %}">
+<!-- themefy-icon -->
+<link rel="stylesheet" href="{% static 'frontend/plugins/themify-icons/themify-icons.css' %}">
+
+<!-- Main Stylesheet -->
+<link href="{% static 'frontend/css/style.css' %}" rel="stylesheet">
+
+<!--Favicon-->
+<link rel="shortcut icon" href="{% static 'frontend/images/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'frontend/images/favicon.ico' %}" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'frontend/css/maps/custom.css' %}">
+<body>
+    <div class="overlay-mf"></div>
+    <div class="container" style="background-color: pink;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="contact-mf">
+                    <div class="box-shadow-full">
+                        <div class="row">
+                            <div class="">
+                                <div class="title-box-2">
+                                    <h5 class="title-left">
+                                    Register
+                                    </h5>
+                                </div>
+                                </div>
+                                    <form method="post" enctype="multipart/form-data" style="margin: auto; width: 50%;">
+                                        {{ reg.as_p }}
+                                        {% csrf_token %}
+                                        <button  type="submit" class="btn btn-primary">Submit</button>
+                                        <a class="btn btn-primary" href="{% url 'font_app:login' %}">Log in</a>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+
+       <script src="{% static 'frontend/plugins/jQuery/jquery.min.js' %}"></script>
+       <!-- Bootstrap JS -->
+       <script src="{% static 'frontend/plugins/bootstrap/bootstrap.min.js' %}"></script>
+       <!-- slick slider -->
+       <script src="{% static 'frontend/plugins/slick/slick.min.js' %}"></script>
+       <!-- filter -->
+       <script src="{% static 'frontend/plugins/shuffle/shuffle.min.js' %}"></script>
+       
+       <!-- Main Script -->
+       <script src="{% static 'frontend//script.js' %}"></script>
+       
+</body>
+</html>

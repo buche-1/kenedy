@@ -1,0 +1,14 @@
+.login-container{
+    text-align: center;
+    background-color:rgba(125 ,225, 70, 0.2);
+    width: 600px;
+    height: 400px;
+    margin-left: 30%;
+    padding-top: 5%;
+}
+.form-group input{
+    width: 400px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}

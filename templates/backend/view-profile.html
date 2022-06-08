@@ -1,0 +1,65 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block title%}
+dashboard
+{% endblock %}
+{% block content %}
+    <title>Buche- Dashboard</title>
+
+            <div style="margin-bottom: 100%;" class="pen">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <label for="">Firstname</label>
+                    <div class="sidebar-brand-text mx-3">{{ user.firstname}}</div>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">{{ user.firstname }}</h6>
+                     
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <label for="">Last name</label>
+                    <div class="sidebar-brand-text mx-3">{{ user.lastname}}</div>
+                </a>
+                
+            </li>
+
+            
+
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <label for="">Email</label>
+                    <div class="sidebar-brand-text mx-3">{{ user.email}}</div>
+                </a>
+                
+            </li>
+        </div>
+
+            
+
+            <!-- Sidebar Toggler (Sidebar) -->
+           
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        
+            <!-- End of Main Content -->
+
+       
+{% endblock %}
