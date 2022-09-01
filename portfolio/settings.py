@@ -24,6 +24,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -33,7 +34,7 @@ SECRET_KEY = 'django-insecure-rkr7kk5+cfzx7oha32%whtv#+p^*uja1cd44adev5@g6ebjhzv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,8 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'font_app',
     'backend',
-    
+    'crispy_forms'
+
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,9 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT ='/home/Buche/kenedy/static'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-STATICFILES_DIRS = [STATIC_DIR]
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

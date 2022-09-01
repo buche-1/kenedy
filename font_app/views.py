@@ -21,9 +21,9 @@ def blog(request):
 def blog_single(request, pk):
     single = get_object_or_404(Blog, pk=pk )
     return render(request,'frontend/blog-single.html',{'single':single})
-    
-    
-    
+
+
+
 def portfolio(request):
     port = Portfolio.objects.all()
     return render(request,'frontend/portfolio.html', {'port':port})
@@ -32,33 +32,39 @@ def ContactForm(request):
         ContactForm = cont_(request.POST)
         if cont.is_valid():
             cont.save()
-    cont = Contact.objects.all        
+    cont = Contact.objects.all
     return render(request,'frontend/contact.html', {'cont':cont})
 
 
 def my_team(request):
     team = team.objects.all()
 
-def register(request):
+def register_request(request):
     if request.method == 'POST':
-        register_form = RegForm(request.POST)
+        register_form = NewUserForm(request.POST)
         if register_form.is_valid():
             register_form.save()
         return redirect('font_app:login')
     else:
-        register_form = RegForm()
-    return render(request, 'frontend/register.html', {'reg':register_form})
- 
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        register_form = NewUserForm()
+    return render(request, 'frontend/register.html', {'register_form':register_form})
 
-        if user is not None:
-            login(request,user)
-            return redirect('backend:index')
-        else:
-            messages.error(request, 'Username and Password do not match')
-    return render(request, 'frontend/login.html')   
+def login_request(request):
+	if request.method == "POST":
+		form = AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				messages.info(request, f"You are now logged in as {username}.")
+				return redirect("main:homepage")
+			else:
+				messages.error(request,"Invalid username or password.")
+		else:
+			messages.error(request,"Invalid username or password.")
+			return render(request=request, template_name="frontend/login.html", context={"login_form":form})
+
+
 

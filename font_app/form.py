@@ -32,7 +32,7 @@ class Profile(forms.Form):
         ('o-negative', 'O-NEGATIVE'),
         ('a', 'A'),
     ]
-    
+
     name = forms.CharField()
     email = forms.EmailField()
     password = forms.PasswordInput()
@@ -59,29 +59,31 @@ class ContactForm(forms.ModelForm):
         Your_message = forms.CharField(widget=forms.TextInput(
             attrs={'class':'form-control', 'placeholder': 'message', 'rows':'4', 'id':'usercomment'}))
 
-class RegForm(UserCreationForm):
-    username = forms.CharField(label='Username :', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
-    email = forms.EmailField(label='Email :',
-                            widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
-    first_name = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Enter Firstname'}))
-    last_name = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Enter Lastname'}))
-    password1 = forms.CharField(required=False, widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
-    password2 = forms.CharField(required=False, widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
+# class RegForm(UserCreationForm):
+#     username = forms.CharField(label='Username :', widget=forms.TextInput(
+#         attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
+#     email = forms.EmailField(label='Email :',
+#                             widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
+#     first_name = forms.CharField(required=False, widget=forms.TextInput(
+#         attrs={'class': 'form-control', 'placeholder': 'Enter Firstname'}))
+#     last_name = forms.CharField(required=False, widget=forms.TextInput(
+#         attrs={'class': 'form-control', 'placeholder': 'Enter Lastname'}))
+#     password1 = forms.CharField(label= 'Enter Password', widget=forms.PasswordInput(
+#         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
+#     password2 = forms.CharField(label= 'Confirm Password', widget=forms.PasswordInput(
+#         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
 
-    def clean_email(self):
-        email_field = self.cleaned_data.get('email')
-        if User.objects.filter(email=email_field).exists():
-            raise forms.ValidationError ('Email already exist')
-        return email_field
-    class Meta():
-        model = User
-        fields = ['username', 'email', 'first_name',
-                    'last_name', 'password1','password2']
+class NewUserForm(UserCreationForm):
+	email = forms.EmailField(required=True)
 
+	class Meta:
+		model = User
+		fields = ("username", "email", "password1", "password2")
 
-    
+	def save(self, commit=True):
+		user = super(NewUserForm, self).save(commit=False)
+		user.email = self.cleaned_data['email']
+		if commit:
+			user.save()
+		return user
+
